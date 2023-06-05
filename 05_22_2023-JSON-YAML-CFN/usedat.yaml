@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  this template launches ec2 enable ssh connection
+Resources:
+  instance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0889a44b331db0194
+      InstanceType: t2.micro
+      KeyName: first-key-pair
+      SecurityGroups:
+        - !Ref secgrub
+      Tags:
+        - Key: Name
+          Value: Serveraa
+
+  secgrub:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: enable ssh. # Required
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
